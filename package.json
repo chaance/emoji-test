@@ -2,13 +2,15 @@
   "name": "emoji-test",
   "description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
   "author": "Chance Strickland <hi@chancedigital.io>",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/emoji-test.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "generate": "ts-node scripts/get-emoji-data.ts",

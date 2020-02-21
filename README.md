@@ -1,10 +1,16 @@
 # `emoji-test`
 
+[![Stable Release](https://img.shields.io/npm/v/emoji-test.svg)](https://npm.im/emoji-test)
+[![gzip size](http://img.badgesize.io/https://unpkg.com/emoji-test@latest/dist/emoji-test.cjs.production.min.js?compression=gzip)](https://unpkg.com/emoji-test@latest/dist/emoji-test.cjs.production.min.js)
+[![license](https://badgen.now.sh/badge/license/MIT)](./LICENSE)
+
 Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻
 
 Most solutions try to be clever by using character ranges to guess what _should_ be an emoji, but these ranges are often incomplete and are hard to keep up-to-date as the Unicode emoji list changes over time. This package generates regex patterns using an object map of all real emojis, generated using the information extracted from the [Emoji source data](https://unicode.org/Public/emoji/13.0/emoji-test.txt).
 
 When new updates are released by Unicode, this library can easily generate a new map object and cut new releases quickly and efficiently.
+
+The tradeoff with this approach is a slightly larger bundle in exchange for reliability.
 
 This package is a fork of [tonton-pixel/emoji-test-patterns](https://github.com/tonton-pixel/emoji-test-patterns), which was designed for use in Node. `emoji-test` can be used in Node or the browser.
 
