@@ -1,5 +1,6 @@
 {
   "name": "emoji-test",
+  "description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
   "author": "Chance Strickland <hi@chancedigital.io>",
   "version": "0.1.0",
   "license": "MIT",

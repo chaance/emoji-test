@@ -1,6 +1,6 @@
 # `emoji-test`
 
-Patterns to contruct reliable regular expressions to match emojis in a string.
+Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻
 
 Most solutions try to be clever by using character ranges to guess what _should_ be an emoji, but these ranges are often incomplete and are hard to keep up-to-date as the Unicode emoji list changes over time. This package generates regex patterns using an object map of all real emojis, generated using the information extracted from the [Emoji source data](https://unicode.org/Public/emoji/13.0/emoji-test.txt).
 
