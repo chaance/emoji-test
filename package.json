@@ -1,47 +1,55 @@
 {
-  "name": "emoji-test",
-  "description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
-  "author": "Chance Strickland <hi@chancedigital.io>",
-  "version": "1.0.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/emoji-test.esm.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "scripts": {
-    "generate": "ts-node scripts/get-emoji-data.ts",
-    "start": "tsdx watch",
-    "build": "yarn generate && tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build"
-  },
-  "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && tsdx lint"
-    }
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "dependencies": {
-    "regexgen": "^1.3.0"
-  },
-  "devDependencies": {
-    "@types/node": "12.x",
-    "@types/jest": "^25.1.3",
-    "husky": "^4.2.3",
-    "prettier": "^1.19.1",
-    "pretty-quick": "^2.0.1",
-    "tsdx": "^0.12.3",
-    "tslib": "^1.11.0",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.2"
-  }
+	"name": "emoji-test",
+	"description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
+	"author": "Chance Strickland <hi@chancedigital.io>",
+	"version": "1.0.0",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"module": "dist/emoji-test.esm.js",
+	"typings": "dist/index.d.ts",
+	"files": [
+		"dist",
+		"src",
+		"README.md",
+		"LICENSE"
+	],
+	"engines": {
+		"node": ">=12"
+	},
+	"scripts": {
+		"generate": "node scripts/get-emoji-data.js",
+		"start": "tsdx watch",
+		"build": "npm run generate && tsdx build",
+		"test": "tsdx test",
+		"lint": "tsdx lint",
+		"prepare": "tsdx build",
+		"size": "size-limit",
+		"analyze": "size-limit --why"
+	},
+	"peerDependencies": {},
+	"size-limit": [
+		{
+			"path": "dist/emoji-test.cjs.production.min.js",
+			"limit": "10 KB"
+		},
+		{
+			"path": "dist/emoji-test.esm.js",
+			"limit": "10 KB"
+		}
+	],
+	"prettier": {
+		"useTabs": true,
+		"tabWidth": 2
+	},
+	"dependencies": {
+		"regexgen": "^1.3.0"
+	},
+	"devDependencies": {
+		"@size-limit/preset-small-lib": "^5.0.1",
+		"prettier": "^2.3.2",
+		"size-limit": "^5.0.1",
+		"tsdx": "^0.14.1",
+		"tslib": "^2.3.0",
+		"typescript": "^4.3.5"
+	}
 }
