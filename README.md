@@ -6,7 +6,7 @@
 
 Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻
 
-Most solutions try to be clever by using character ranges to guess what _should_ be an emoji, but these ranges are often incomplete and are hard to keep up-to-date as the Unicode emoji list changes over time. This package generates regex patterns using an object map of all real emojis, generated using the information extracted from the [Emoji source data](https://unicode.org/Public/emoji/13.0/emoji-test.txt).
+Most solutions try to be clever by using character ranges to guess what _should_ be an emoji, but these ranges are often incomplete and are hard to keep up-to-date as the Unicode emoji list changes over time. This package generates regex patterns using an object map of all real emojis, generated using the information extracted from the [Emoji source data](https://unicode.org/Public/emoji/13.1/emoji-test.txt).
 
 When new updates are released by Unicode, this library can easily generate a new map object and cut new releases quickly and efficiently.
 
@@ -43,19 +43,19 @@ yarn test
 ### Testing whether an emoji is fully-qualified (keyboard) or non-fully-qualified (display)
 
 ```js
-import emojiPatterns from 'emoji-test-patterns';
-let emojiKeyboardRegex = new RegExp('^' + emojiPatterns.keyboard + '$', 'gu');
-console.log(emojiKeyboardRegex.test('❤️')); // true!
-console.log(emojiKeyboardRegex.test('🕷')); // false!
+import emojiPatterns from "emoji-test";
+let emojiKeyboardRegex = new RegExp("^" + emojiPatterns.keyboard + "$", "gu");
+console.log(emojiKeyboardRegex.test("❤️")); // true!
+console.log(emojiKeyboardRegex.test("🕷")); // false!
 ```
 
 ### Extracting all emojis from a string
 
-```javascript
-import emojiPatterns from 'emoji-test-patterns';
-let emojiAllRegex = new RegExp(emojiPatterns.all, 'gu');
+```js
+import emojiPatterns from "emoji-test";
+let emojiAllRegex = new RegExp(emojiPatterns.all, "gu");
 console.log(
-  'AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨'.match(emojiPatterns)
+	"AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨".match(emojiPatterns)
 );
 // ["❤","❤️","💜","🇨🇦","🇫🇷","🇬🇧","🇯🇵","🇺🇸","👪","👨‍👩‍👦","💑","👩‍❤️‍👨","💏","👩‍❤️‍💋‍👨"]
 ```
@@ -63,14 +63,14 @@ console.log(
 ### Extracting all fully-qualified (keyboard) emoji from a string
 
 ```js
-import emojiPatterns from 'emoji-test-patterns';
-let emojiAllRegex = new RegExp(emojiPatterns.all, 'gu');
-let emojiKeyboardRegex = new RegExp('^' + emojiPatterns.keyboard + '$', 'u');
-let emojiList = 'AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨'.match(
-  emojiAllRegex
+import emojiPatterns from "emoji-test";
+let emojiAllRegex = new RegExp(emojiPatterns.all, "gu");
+let emojiKeyboardRegex = new RegExp("^" + emojiPatterns.keyboard + "$", "u");
+let emojiList = "AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨".match(
+	emojiAllRegex
 );
 if (emojiList) {
-  emojiList = emojiList.filter(emoji => emojiKeyboardRegex.test(emoji));
+	emojiList = emojiList.filter((emoji) => emojiKeyboardRegex.test(emoji));
 }
 console.log(emojiList);
 // ["❤️","💜","🇨🇦","🇫🇷","🇬🇧","🇯🇵","🇺🇸","👪","👨‍👩‍👦","💑","👩‍❤️‍👨","💏","👩‍❤️‍💋‍👨"]
@@ -79,10 +79,10 @@ console.log(emojiList);
 ### Removing all emoji from a string
 
 ```js
-import emojiPatterns from 'emoji-test-patterns';
-let emojiAllRegex = new RegExp(emojiPatterns.all, 'gu');
+import emojiPatterns from "emoji-test";
+let emojiAllRegex = new RegExp(emojiPatterns.all, "gu");
 console.log(
-  'AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨'.replace(emojiAllRegex, '')
+	"AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨".replace(emojiAllRegex, "")
 );
 // "AaĀā#*0🇦愛爱애  ⬌ ⬌ ⬌"
 ```
