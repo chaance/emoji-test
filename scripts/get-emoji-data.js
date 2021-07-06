@@ -25,7 +25,7 @@ try {
 		[
 			"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/get-emoji-data.js",
 			`let list = ${JSON.stringify(getEmojiList(text))};`,
-			`export default list;`,
+			`module.exports = list;`,
 		].join("\n")
 	);
 	console.log("Success!!");
