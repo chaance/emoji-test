@@ -21,11 +21,13 @@ try {
 	}
 
 	fs.writeFileSync(
-		path.join(__dirname, "../src", "emoji-test.js"),
+		path.join(__dirname, "../src", "emoji-test.ts"),
 		[
 			"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/get-emoji-data.js",
-			`let list = ${JSON.stringify(getEmojiList(text))};`,
-			`module.exports = list;`,
+			`type EmojiList = Record<string, string>;`,
+			`let list: EmojiList = ${JSON.stringify(getEmojiList(text))};`,
+			`export default list;`,
+			"",
 		].join("\n")
 	);
 	console.log("Success!!");
