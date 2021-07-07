@@ -22,7 +22,7 @@ function getEmojiTestPatterns() {
 
 	let trieComponent = new regexgen.Trie();
 	for (let key of emojiKeys) {
-		if (emojiList[key] === emojiTypeKeyMap["component"]) {
+		if (emojiList[key] === emojiTypeKeyMap.component) {
 			trieComponent.add(key);
 		}
 	}
@@ -40,7 +40,7 @@ function getEmojiTestPatterns() {
 	for (let key of emojiKeys) {
 		if (
 			emojiList[key] === emojiTypeKeyMap["minimally-qualified"] ||
-			emojiList[key] === emojiTypeKeyMap["unqualified"]
+			emojiList[key] === emojiTypeKeyMap.unqualified
 		) {
 			trieDisplay.add(key);
 		}

@@ -23,7 +23,7 @@ try {
 	fs.writeFileSync(
 		path.join(__dirname, "../src", "emoji-test.ts"),
 		[
-			"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/get-emoji-data.js",
+			"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/generate.js",
 			`type EmojiList = Record<string, string>;`,
 			`let list: EmojiList = ${JSON.stringify(getEmojiList(text))};`,
 			`export default list;`,
