@@ -1,4 +1,4 @@
-const fs = require("fs");
+const { writeFile, readFile } = require("fs-extra");
 const path = require("path");
 
 const emojiTypeKeyMap = {
@@ -8,33 +8,37 @@ const emojiTypeKeyMap = {
 	unqualified: "_et_u",
 };
 
-try {
-	let text = fs.readFileSync(path.join(__dirname, "emoji-test.txt"), {
-		encoding: "utf8",
-	});
+generate();
 
-	for (let key of Object.keys(emojiTypeKeyMap)) {
-		text = text.replace(
-			new RegExp(`; ${key}`, "g"),
-			`; ${emojiTypeKeyMap[key]}`
+async function generate() {
+	try {
+		let text = await readFile(path.join(__dirname, "emoji-test.txt"), {
+			encoding: "utf8",
+		});
+
+		for (let key of Object.keys(emojiTypeKeyMap)) {
+			text = text.replace(
+				new RegExp(`; ${key}`, "g"),
+				`; ${emojiTypeKeyMap[key]}`
+			);
+		}
+
+		await writeFile(
+			path.join(__dirname, "../src", "emoji-test.ts"),
+			[
+				"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/generate.js",
+				`type EmojiList = Record<string, string>;`,
+				`let list: EmojiList = ${JSON.stringify(getEmojiList(text))};`,
+				`export default list;`,
+				"",
+			].join("\n")
 		);
+		console.log("Success!!");
+	} catch (err) {
+		// TODO:
+		console.log("Error!!");
+		console.error(err);
 	}
-
-	fs.writeFileSync(
-		path.join(__dirname, "../src", "emoji-test.ts"),
-		[
-			"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/generate.js",
-			`type EmojiList = Record<string, string>;`,
-			`let list: EmojiList = ${JSON.stringify(getEmojiList(text))};`,
-			`export default list;`,
-			"",
-		].join("\n")
-	);
-	console.log("Success!!");
-} catch (err) {
-	// TODO:
-	console.log("Error!!");
-	console.error(err);
 }
 
 function getEmojiList(src) {

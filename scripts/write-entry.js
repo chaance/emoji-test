@@ -1,5 +1,5 @@
 const path = require("path");
-const { writeFile } = require("fs/promises");
+const { writeFile } = require("fs-extra");
 
 const distPath = path.resolve(__dirname, "../dist");
 const packageName = "emoji-test";
