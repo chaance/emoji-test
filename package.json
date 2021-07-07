@@ -2,7 +2,7 @@
 	"name": "emoji-test",
 	"description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
 	"author": "Chance Strickland <hi@chancedigital.io>",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"license": "MIT",
 	"main": "dist/emoji-test.cjs.js",
 	"module": "dist/emoji-test.esm.js",
