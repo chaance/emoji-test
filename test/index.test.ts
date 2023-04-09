@@ -1,4 +1,5 @@
-import emojiPatterns from "../src";
+import { emojiPatterns } from "../src/emoji-test";
+import { describe, it, expect } from "vitest";
 
 const testString =
 	"happy go lucky AaĀā❤愛爱❤️애💜 👳🏻👳🏼👳🏽👳🏾👳🏿 hello 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨";

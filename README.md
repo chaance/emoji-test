@@ -12,7 +12,7 @@ When new updates are released by Unicode, this library can easily generate a new
 
 The tradeoff with this approach is a slightly larger bundle in exchange for reliability.
 
-This package is a fork of [tonton-pixel/emoji-test-patterns](https://github.com/tonton-pixel/emoji-test-patterns), which was designed for use in Node. `emoji-test` can be used in Node or the browser.
+This package is a fork of [tonton-pixel/emoji-test-patterns](https://github.com/tonton-pixel/emoji-test-patterns), which was designed for use in Node. `emoji-test` can be used in any JavaScript runtime—including the browser.
 
 ## Notes
 
@@ -43,7 +43,7 @@ yarn test
 ### Testing whether an emoji is fully-qualified (keyboard) or non-fully-qualified (display)
 
 ```js
-import emojiPatterns from "emoji-test";
+import { emojiPatterns } from "emoji-test";
 let emojiKeyboardRegex = new RegExp("^" + emojiPatterns.keyboard + "$", "gu");
 console.log(emojiKeyboardRegex.test("❤️")); // true!
 console.log(emojiKeyboardRegex.test("🕷")); // false!
@@ -52,7 +52,7 @@ console.log(emojiKeyboardRegex.test("🕷")); // false!
 ### Extracting all emojis from a string
 
 ```js
-import emojiPatterns from "emoji-test";
+import { emojiPatterns } from "emoji-test";
 let emojiAllRegex = new RegExp(emojiPatterns.all, "gu");
 console.log(
 	"AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨".match(emojiPatterns)
@@ -63,7 +63,7 @@ console.log(
 ### Extracting all fully-qualified (keyboard) emoji from a string
 
 ```js
-import emojiPatterns from "emoji-test";
+import { emojiPatterns } from "emoji-test";
 let emojiAllRegex = new RegExp(emojiPatterns.all, "gu");
 let emojiKeyboardRegex = new RegExp("^" + emojiPatterns.keyboard + "$", "u");
 let emojiList = "AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨".match(
@@ -79,7 +79,7 @@ console.log(emojiList);
 ### Removing all emoji from a string
 
 ```js
-import emojiPatterns from "emoji-test";
+import { emojiPatterns } from "emoji-test";
 let emojiAllRegex = new RegExp(emojiPatterns.all, "gu");
 console.log(
 	"AaĀā#*0❤🇦愛爱❤️애💜 🇨🇦🇫🇷🇬🇧🇯🇵🇺🇸 👪⬌👨‍👩‍👦 💑⬌👩‍❤️‍👨 💏⬌👩‍❤️‍💋‍👨".replace(emojiAllRegex, "")

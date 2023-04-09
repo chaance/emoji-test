@@ -1,6 +1,9 @@
-const { writeFile, readFile } = require("fs-extra");
-const path = require("path");
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import fse from "fs-extra";
 
+const { writeFile, readFile } = fse;
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 const emojiTypeKeyMap = {
 	component: "_et_c",
 	"fully-qualified": "_et_f",
@@ -12,7 +15,7 @@ generate();
 
 async function generate() {
 	try {
-		let text = await readFile(path.join(__dirname, "emoji-test.txt"), {
+		let text = await readFile(path.join(dirname, "emoji-test.txt"), {
 			encoding: "utf8",
 		});
 
@@ -24,12 +27,13 @@ async function generate() {
 		}
 
 		await writeFile(
-			path.join(__dirname, "../src", "emoji-test.ts"),
+			path.join(dirname, "../src", "emoji-list.ts"),
 			[
 				"// THIS IS A GENERATED FILE! Do not edit directly. See scripts/generate.js",
 				`type EmojiList = Record<string, string>;`,
-				`let list: EmojiList = ${JSON.stringify(getEmojiList(text))};`,
-				`export default list;`,
+				`export const emojiList: EmojiList = ${JSON.stringify(
+					getEmojiList(text)
+				)};`,
 				"",
 			].join("\n")
 		);

@@ -1,12 +1,38 @@
 {
 	"name": "emoji-test",
-	"description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
-	"author": "Chance Strickland <hi@chancedigital.io>",
 	"version": "1.1.0",
+	"description": "Patterns to contruct reliable regular expressions to match emojis in a string. 👋💸💻",
+	"author": "Chance Strickland <hi@chance.dev>",
 	"license": "MIT",
 	"main": "dist/emoji-test.cjs.js",
 	"module": "dist/emoji-test.esm.js",
-	"typings": "dist/index.d.ts",
+	"types": "dist/emoji-test.d.ts",
+	"exports": {
+		".": {
+			"require": "./dist/emoji-test.cjs.js",
+			"import": "./dist/emoji-test.esm.js",
+			"types": "./dist/emoji-test.d.ts"
+		},
+		"./prod": {
+			"require": "./dist/emoji-test.cjs.prod.js",
+			"import": "./dist/emoji-test.esm.prod.js",
+			"types": "./dist/emoji-test.d.ts"
+		},
+		"./dev": {
+			"require": "./dist/emoji-test.cjs.dev.js",
+			"import": "./dist/emoji-test.esm.js",
+			"types": "./dist/emoji-test.d.ts"
+		}
+	},
+	"scripts": {
+		"prepare": "node scripts/generate.mjs",
+		"bundle": "tsup",
+		"build": "npm run prepare && npm run bundle && node scripts/write-entry.mjs",
+		"lint": "eslint . && npm run types:check",
+		"types:check": "tsc --noEmit",
+		"test": "vitest",
+		"coverage": "vitest run --coverage"
+	},
 	"files": [
 		"dist",
 		"src",
@@ -14,69 +40,28 @@
 		"LICENSE"
 	],
 	"engines": {
-		"node": ">=12"
-	},
-	"scripts": {
-		"lint": "eslint . && npm run types:check",
-		"bundle": "rollup --config rollup.config.js",
-		"generate": "node scripts/generate.js",
-		"build": "npm run generate && npm run bundle && node scripts/write-entry.js && npm run types:build",
-		"types:build": "tsc --declaration --emitDeclarationOnly --declarationDir ./dist",
-		"types:check": "tsc --noEmit",
-		"test": "jest",
-		"prepare": "npm run generate"
+		"node": ">=14"
 	},
 	"peerDependencies": {},
 	"dependencies": {
 		"regexgen": "^1.3.0"
 	},
 	"devDependencies": {
-		"@babel/preset-env": "^7.14.7",
-		"@babel/preset-typescript": "^7.14.5",
-		"@chancedigital/eslint-config": "^8.1.1",
-		"@rollup/plugin-commonjs": "^19.0.0",
-		"@rollup/plugin-typescript": "^8.2.1",
-		"@types/fs-extra": "^9.0.12",
-		"@types/jest": "^26.0.23",
-		"@typescript-eslint/eslint-plugin": "^4.28.2",
-		"@typescript-eslint/parser": "^4.28.2",
-		"babel-eslint": "^10.1.0",
-		"eslint": "^7.30.0",
-		"eslint-plugin-import": "^2.23.4",
-		"eslint-plugin-jest": "^24.3.6",
-		"eslint-plugin-node": "^11.1.0",
-		"eslint-plugin-testing-library": "^3.10.2",
-		"fs-extra": "^10.0.0",
-		"jest": "^27.0.6",
-		"prettier": "^2.3.2",
-		"rollup": "^2.52.7",
-		"rollup-plugin-sourcemaps": "0.6.3",
-		"tslib": "^2.3.0",
-		"typescript": "^4.3.5"
-	},
-	"eslintConfig": {
-		"extends": [
-			"@chancedigital",
-			"@chancedigital/eslint-config/jest",
-			"@chancedigital/eslint-config/typescript"
-		]
-	},
-	"eslintIgnore": [
-		"src/emoji-test.js",
-		"dist"
-	],
-	"prettier": {
-		"useTabs": true,
-		"tabWidth": 2
-	},
-	"jest": {
-		"verbose": true,
-		"testEnvironment": "jsdom"
-	},
-	"babel": {
-		"presets": [
-			"@babel/preset-env",
-			"@babel/preset-typescript"
-		]
+		"@types/fs-extra": "^11.0.1",
+		"@types/node": "^18.11.18",
+		"@typescript-eslint/eslint-plugin": "^5.57.1",
+		"@typescript-eslint/parser": "^5.57.1",
+		"@vitest/coverage-c8": "^0.29.8",
+		"eslint": "^8.38.0",
+		"eslint-config-chance": "^2.0.2",
+		"eslint-import-resolver-node": "^0.3.7",
+		"eslint-import-resolver-typescript": "^3.5.5",
+		"eslint-plugin-import": "^2.27.5",
+		"fs-extra": "^11.1.1",
+		"prettier": "^2.8.7",
+		"tsup": "^6.7.0",
+		"typescript": "^5.0.4",
+		"vite": "^4.2.1",
+		"vitest": "^0.29.8"
 	}
 }

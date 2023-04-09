@@ -1,5 +1,5 @@
-*.log
 .DS_Store
+*.log*
 node_modules
-dist
-.vscode
+/dist
+coverage
