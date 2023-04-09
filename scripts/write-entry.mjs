@@ -3,7 +3,7 @@ import process from "node:process";
 import fse from "fs-extra";
 
 const { writeFile } = fse;
-const distPath = path.join(process.cwd(), "__dist");
+const distPath = path.join(process.cwd(), "dist");
 const packageName = "emoji-test";
 
 main();

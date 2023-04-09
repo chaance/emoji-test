@@ -27,9 +27,9 @@
 	"scripts": {
 		"prepare": "node scripts/generate.mjs",
 		"bundle": "tsup",
-		"build": "npm run prepare && npm run bundle && node scripts/write-entry.mjs",
-		"lint": "eslint . && npm run types:check",
-		"types:check": "tsc --noEmit",
+		"build": "pnpm run prepare && pnpm run bundle && node scripts/write-entry.mjs",
+		"lint": "eslint . && pnpm run types:check",
+		"types:check": "tsc --noEmit --emitDeclarationOnly false",
 		"test": "vitest",
 		"coverage": "vitest run --coverage"
 	},
